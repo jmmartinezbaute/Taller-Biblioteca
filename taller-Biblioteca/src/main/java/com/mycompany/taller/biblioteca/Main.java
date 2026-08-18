@@ -183,4 +183,37 @@ public class Main {
 
         System.out.println("Libro no encontrado.");
     }
+
+    public static void actualizarLibro() {
+
+        System.out.print("Ingrese el código del libro: ");
+        String codigo = sc.nextLine();
+
+        for (Libro libro : libros) {
+            if (libro.getCodigo().equals(codigo)) {
+
+                System.out.print("Ingrese el nuevo título: ");
+                String titulo = sc.nextLine();
+
+                System.out.print("Ingrese el nuevo año de publicación: ");
+                String aniopublic = sc.nextLine();
+
+                System.out.print("Ingrese el nuevo autor: ");
+                String autor = sc.nextLine();
+
+                System.out.print("¿Está disponible? (true/false): ");
+                boolean disponible = Boolean.parseBoolean(sc.nextLine());
+
+                libro.setTitulo(titulo);
+                libro.setAniopublic(aniopublic);
+                libro.setAutor(autor);
+                libro.setDisponible(disponible);
+
+                System.out.println("Libro actualizado correctamente.");
+                return;
+            }
+        }
+
+        System.out.println("Libro no encontrado.");
+    }
 }
