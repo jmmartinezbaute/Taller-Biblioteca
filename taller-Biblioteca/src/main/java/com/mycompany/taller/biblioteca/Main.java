@@ -216,4 +216,20 @@ public class Main {
 
         System.out.println("Libro no encontrado.");
     }
+
+    public static void eliminarLibro() {
+
+        System.out.print("Ingrese el código del libro: ");
+        String codigo = sc.nextLine();
+
+        for (Libro libro : libros) {
+            if (libro.getCodigo().equals(codigo)) {
+                libros.remove(libro);
+                System.out.println("Libro eliminado correctamente.");
+                return;
+            }
+        }
+
+        System.out.println("Libro no encontrado.");
+    }
 }
