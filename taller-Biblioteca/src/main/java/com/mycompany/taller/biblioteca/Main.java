@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Main {
 
     static ArrayList<Cliente> clientes = new ArrayList<>();
+    static ArrayList<Libro> libros = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -115,5 +116,31 @@ public class Main {
         }
 
         System.out.println("Cliente no encontrado.");
+    }
+
+    public static void crearLibro() {
+
+        System.out.println("CREAR LIBRO");
+
+        System.out.print("Ingrese el código: ");
+        String codigo = sc.nextLine();
+
+        System.out.print("Ingrese el título: ");
+        String titulo = sc.nextLine();
+
+        System.out.print("Ingrese el año de publicación: ");
+        String aniopublic = sc.nextLine();
+
+        System.out.print("Ingrese el autor: ");
+        String autor = sc.nextLine();
+
+        System.out.print("¿Está disponible? (true/false): ");
+        boolean disponible = Boolean.parseBoolean(sc.nextLine());
+
+        Libro libro = new Libro(codigo, titulo, aniopublic, autor, disponible);
+
+        libros.add(libro);
+
+        System.out.println("Libro creado correctamente.");
     }
 }
