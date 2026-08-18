@@ -100,4 +100,20 @@ public class Main {
 
         System.out.println("Cliente no encontrado.");
     }
+
+    public static void eliminarCliente() {
+
+        System.out.print("Ingrese el ID del cliente: ");
+        String id = sc.nextLine();
+
+        for (Cliente cliente : clientes) {
+            if (cliente.getId().equals(id)) {
+                clientes.remove(cliente);
+                System.out.println("Cliente eliminado correctamente.");
+                return;
+            }
+        }
+
+        System.out.println("Cliente no encontrado.");
+    }
 }
