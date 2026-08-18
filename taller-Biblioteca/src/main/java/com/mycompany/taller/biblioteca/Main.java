@@ -143,4 +143,22 @@ public class Main {
 
         System.out.println("Libro creado correctamente.");
     }
+
+    public static void listarLibros() {
+
+        System.out.println("LISTA DE LIBROS");
+
+        if (libros.isEmpty()) {
+            System.out.println("No hay libros registrados.");
+            return;
+        }
+
+        for (Libro libro : libros) {
+            System.out.println("Código: " + libro.getCodigo());
+            System.out.println("Título: " + libro.getTitulo());
+            System.out.println("Año de publicación: " + libro.getAniopublic());
+            System.out.println("Autor: " + libro.getAutor());
+            System.out.println("Disponible: " + libro.isDisponible());
+        }
+    }
 }
