@@ -161,4 +161,26 @@ public class Main {
             System.out.println("Disponible: " + libro.isDisponible());
         }
     }
+
+    public static void buscarLibro() {
+
+        System.out.print("Ingrese el código del libro: ");
+        String codigo = sc.nextLine();
+
+        for (Libro libro : libros) {
+            if (libro.getCodigo().equals(codigo)) {
+
+                System.out.println("LIBRO ENCONTRADO");
+                System.out.println("Código: " + libro.getCodigo());
+                System.out.println("Título: " + libro.getTitulo());
+                System.out.println("Año de publicación: " + libro.getAniopublic());
+                System.out.println("Autor: " + libro.getAutor());
+                System.out.println("Disponible: " + libro.isDisponible());
+
+                return;
+            }
+        }
+
+        System.out.println("Libro no encontrado.");
+    }
 }
