@@ -302,4 +302,19 @@ public class Main {
         }
         System.out.print("Prestamo no encontrado");
     }
+    public static void listarPrestamos(){
+        System.out.print("LISTA DE PRESTAMOS");
+        if(prestamos.isEmpty()){
+         System.out.print("NO HAY PRESTAMOS REGISTRADOS");
+         return;
+        }
+        for(Prestamo prestamo : prestamos){
+         System.out.print("ID PRESTAMO: "+ prestamo.getIdPrestamo());
+         System.out.print("CLIENTE: "+prestamo.getCliente().getNombre());
+         System.out.print("LIBRO: "+ prestamo.getLibro().getTitulo());
+         System.out.print("FECHA: "+prestamo.getFecha());
+         System.out.print("ESTADO: "+prestamo.getEstado());
+        }
+        
+    }
 }
