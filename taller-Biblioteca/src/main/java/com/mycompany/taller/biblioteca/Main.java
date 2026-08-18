@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Main {
 
     static ArrayList<Cliente> clientes = new ArrayList<>();
+    static ArrayList<Libro> libros = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -115,5 +116,120 @@ public class Main {
         }
 
         System.out.println("Cliente no encontrado.");
+    }
+
+    public static void crearLibro() {
+
+        System.out.println("CREAR LIBRO");
+
+        System.out.print("Ingrese el código: ");
+        String codigo = sc.nextLine();
+
+        System.out.print("Ingrese el título: ");
+        String titulo = sc.nextLine();
+
+        System.out.print("Ingrese el año de publicación: ");
+        String aniopublic = sc.nextLine();
+
+        System.out.print("Ingrese el autor: ");
+        String autor = sc.nextLine();
+
+        System.out.print("¿Está disponible? (true/false): ");
+        boolean disponible = Boolean.parseBoolean(sc.nextLine());
+
+        Libro libro = new Libro(codigo, titulo, aniopublic, autor, disponible);
+
+        libros.add(libro);
+
+        System.out.println("Libro creado correctamente.");
+    }
+
+    public static void listarLibros() {
+
+        System.out.println("LISTA DE LIBROS");
+
+        if (libros.isEmpty()) {
+            System.out.println("No hay libros registrados.");
+            return;
+        }
+
+        for (Libro libro : libros) {
+            System.out.println("Código: " + libro.getCodigo());
+            System.out.println("Título: " + libro.getTitulo());
+            System.out.println("Año de publicación: " + libro.getAniopublic());
+            System.out.println("Autor: " + libro.getAutor());
+            System.out.println("Disponible: " + libro.isDisponible());
+        }
+    }
+
+    public static void buscarLibro() {
+
+        System.out.print("Ingrese el código del libro: ");
+        String codigo = sc.nextLine();
+
+        for (Libro libro : libros) {
+            if (libro.getCodigo().equals(codigo)) {
+
+                System.out.println("LIBRO ENCONTRADO");
+                System.out.println("Código: " + libro.getCodigo());
+                System.out.println("Título: " + libro.getTitulo());
+                System.out.println("Año de publicación: " + libro.getAniopublic());
+                System.out.println("Autor: " + libro.getAutor());
+                System.out.println("Disponible: " + libro.isDisponible());
+
+                return;
+            }
+        }
+
+        System.out.println("Libro no encontrado.");
+    }
+
+    public static void actualizarLibro() {
+
+        System.out.print("Ingrese el código del libro: ");
+        String codigo = sc.nextLine();
+
+        for (Libro libro : libros) {
+            if (libro.getCodigo().equals(codigo)) {
+
+                System.out.print("Ingrese el nuevo título: ");
+                String titulo = sc.nextLine();
+
+                System.out.print("Ingrese el nuevo año de publicación: ");
+                String aniopublic = sc.nextLine();
+
+                System.out.print("Ingrese el nuevo autor: ");
+                String autor = sc.nextLine();
+
+                System.out.print("¿Está disponible? (true/false): ");
+                boolean disponible = Boolean.parseBoolean(sc.nextLine());
+
+                libro.setTitulo(titulo);
+                libro.setAniopublic(aniopublic);
+                libro.setAutor(autor);
+                libro.setDisponible(disponible);
+
+                System.out.println("Libro actualizado correctamente.");
+                return;
+            }
+        }
+
+        System.out.println("Libro no encontrado.");
+    }
+
+    public static void eliminarLibro() {
+
+        System.out.print("Ingrese el código del libro: ");
+        String codigo = sc.nextLine();
+
+        for (Libro libro : libros) {
+            if (libro.getCodigo().equals(codigo)) {
+                libros.remove(libro);
+                System.out.println("Libro eliminado correctamente.");
+                return;
+            }
+        }
+
+        System.out.println("Libro no encontrado.");
     }
 }
