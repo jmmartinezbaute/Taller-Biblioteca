@@ -12,7 +12,94 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        int opcion;
 
+        do {
+            System.out.println("\n===== SISTEMA DE BIBLIOTECA =====");
+            System.out.println("1. Crear cliente");
+            System.out.println("2. Listar clientes");
+            System.out.println("3. Buscar cliente");
+            System.out.println("4. Actualizar cliente");
+            System.out.println("5. Eliminar cliente");
+
+            System.out.println("6. Crear libro");
+            System.out.println("7. Listar libros");
+            System.out.println("8. Buscar libro");
+            System.out.println("9. Actualizar libro");
+            System.out.println("10. Eliminar libro");
+
+            System.out.println("11. Crear préstamo");
+            System.out.println("12. Listar préstamos");
+            System.out.println("13. Devolver libro");
+
+            System.out.println("0. Salir");
+
+            System.out.print("Seleccione una opción: ");
+            opcion = Integer.parseInt(sc.nextLine());
+
+            switch (opcion) {
+
+                case 1:
+                    crearCliente();
+                    break;
+
+                case 2:
+                    listarClientes();
+                    break;
+
+                case 3:
+                    buscarCliente();
+                    break;
+
+                case 4:
+                    actualizarCliente();
+                    break;
+
+                case 5:
+                    eliminarCliente();
+                    break;
+
+                case 6:
+                    crearLibro();
+                    break;
+
+                case 7:
+                    listarLibros();
+                    break;
+
+                case 8:
+                    buscarLibro();
+                    break;
+
+                case 9:
+                    actualizarLibro();
+                    break;
+
+                case 10:
+                    eliminarLibro();
+                    break;
+
+                case 11:
+                    crearPrestamo();
+                    break;
+
+                case 12:
+                    listarPrestamos();
+                    break;
+
+                case 13:
+                    devolverLibro();
+                    break;
+
+                case 0:
+                    System.out.println("Saliendo del sistema...");
+                    break;
+
+                default:
+                    System.out.println("Opción no válida.");
+            }
+
+        } while (opcion != 0);
     }
 
     public static void crearCliente() {
@@ -288,12 +375,13 @@ public class Main {
 
         System.out.println("Préstamo registrado correctamente.");
     }
-    public static void devolverLibro(){
+
+    public static void devolverLibro() {
         System.out.print("DEVOLUCION DEL LIBRO");
         System.out.print("INGRESE EL ID DEL PRESTAMO ");
-        String idPrestamo=sc.nextLine();
-        for(Prestamo prestamo : prestamos){
-            if(prestamo.getIdPrestamo().equals(idPrestamo)){
+        String idPrestamo = sc.nextLine();
+        for (Prestamo prestamo : prestamos) {
+            if (prestamo.getIdPrestamo().equals(idPrestamo)) {
                 prestamo.setEstado("DEVUELTO");
                 prestamo.getLibro().setDisponible(true);
                 System.out.print("Libro devuelto correctamente");
@@ -302,19 +390,20 @@ public class Main {
         }
         System.out.print("Prestamo no encontrado");
     }
-    public static void listarPrestamos(){
+
+    public static void listarPrestamos() {
         System.out.print("LISTA DE PRESTAMOS");
-        if(prestamos.isEmpty()){
-         System.out.print("NO HAY PRESTAMOS REGISTRADOS");
-         return;
+        if (prestamos.isEmpty()) {
+            System.out.print("NO HAY PRESTAMOS REGISTRADOS");
+            return;
         }
-        for(Prestamo prestamo : prestamos){
-         System.out.print("ID PRESTAMO: "+ prestamo.getIdPrestamo());
-         System.out.print("CLIENTE: "+prestamo.getCliente().getNombre());
-         System.out.print("LIBRO: "+ prestamo.getLibro().getTitulo());
-         System.out.print("FECHA: "+prestamo.getFecha());
-         System.out.print("ESTADO: "+prestamo.getEstado());
+        for (Prestamo prestamo : prestamos) {
+            System.out.print("ID PRESTAMO: " + prestamo.getIdPrestamo());
+            System.out.print("CLIENTE: " + prestamo.getCliente().getNombre());
+            System.out.print("LIBRO: " + prestamo.getLibro().getTitulo());
+            System.out.print("FECHA: " + prestamo.getFecha());
+            System.out.print("ESTADO: " + prestamo.getEstado());
         }
-        
+
     }
 }
