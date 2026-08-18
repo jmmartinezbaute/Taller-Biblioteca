@@ -1,5 +1,6 @@
 package com.mycompany.taller.biblioteca;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,6 +8,7 @@ public class Main {
 
     static ArrayList<Cliente> clientes = new ArrayList<>();
     static ArrayList<Libro> libros = new ArrayList<>();
+    static ArrayList<Prestamo> prestamos = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -231,5 +233,59 @@ public class Main {
         }
 
         System.out.println("Libro no encontrado.");
+    }
+
+    public static void crearPrestamo() {
+
+        System.out.println("REGISTRO PRESTAMO");
+
+        System.out.print("Ingrese el ID del préstamo: ");
+        String idPrestamo = sc.nextLine();
+
+        System.out.print("Ingrese el ID del cliente: ");
+        String idCliente = sc.nextLine();
+
+        Cliente clienteEncontrado = null;
+
+        for (Cliente cliente : clientes) {
+            if (cliente.getId().equals(idCliente)) {
+                clienteEncontrado = cliente;
+                break;
+            }
+        }
+
+        if (clienteEncontrado == null) {
+            System.out.println("Cliente no encontrado");
+            return;
+        }
+
+        System.out.print("Ingrese el código del libro: ");
+        String codigoLibro = sc.nextLine();
+
+        Libro libroEncontrado = null;
+
+        for (Libro libro : libros) {
+            if (libro.getCodigo().equals(codigoLibro)) {
+                libroEncontrado = libro;
+                break;
+            }
+        }
+
+        if (libroEncontrado == null) {
+            System.out.println("Libro no encontrado");
+            return;
+        }
+
+        System.out.print("Ingrese la fecha: ");
+        LocalDate fecha = LocalDate.parse(sc.nextLine());
+
+        System.out.print("Ingrese el estado: ");
+        String estado = sc.nextLine();
+
+        Prestamo prestamo = new Prestamo(idPrestamo, clienteEncontrado, libroEncontrado, fecha, estado);
+
+        prestamos.add(prestamo);
+
+        System.out.println("Préstamo registrado correctamente.");
     }
 }
