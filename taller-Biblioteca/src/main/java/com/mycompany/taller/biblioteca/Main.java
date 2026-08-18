@@ -9,13 +9,12 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        
+
     }
 
-   
     public static void crearCliente() {
 
-        System.out.println("=== CREAR CLIENTE ===");
+        System.out.println("CREAR CLIENTE");
 
         System.out.print("Ingrese el ID: ");
         String id = sc.nextLine();
@@ -34,5 +33,23 @@ public class Main {
         clientes.add(cliente);
 
         System.out.println("Cliente creado correctamente.");
+    }
+
+    public static void listarClientes() {
+
+        System.out.println("LISTA DE CLIENTES");
+
+        if (clientes.isEmpty()) {
+            System.out.println("No hay clientes registrados.");
+            return;
+        }
+
+        for (Cliente cliente : clientes) {
+            System.out.println("ID: " + cliente.getId());
+            System.out.println("Nombre: " + cliente.getNombre());
+            System.out.println("Teléfono: " + cliente.getTelefono());
+            System.out.println("Email: " + cliente.getEmail());
+
+        }
     }
 }
