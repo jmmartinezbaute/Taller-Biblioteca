@@ -1,5 +1,6 @@
 package com.mycompany.taller.biblioteca;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,6 +8,7 @@ public class Main {
 
     static ArrayList<Cliente> clientes = new ArrayList<>();
     static ArrayList<Libro> libros = new ArrayList<>();
+    static ArrayList<Prestamo> prestamos = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -231,5 +233,88 @@ public class Main {
         }
 
         System.out.println("Libro no encontrado.");
+    }
+
+    public static void crearPrestamo() {
+
+        System.out.println("REGISTRO PRESTAMO");
+
+        System.out.print("Ingrese el ID del préstamo: ");
+        String idPrestamo = sc.nextLine();
+
+        System.out.print("Ingrese el ID del cliente: ");
+        String idCliente = sc.nextLine();
+
+        Cliente clienteEncontrado = null;
+
+        for (Cliente cliente : clientes) {
+            if (cliente.getId().equals(idCliente)) {
+                clienteEncontrado = cliente;
+                break;
+            }
+        }
+
+        if (clienteEncontrado == null) {
+            System.out.println("Cliente no encontrado");
+            return;
+        }
+
+        System.out.print("Ingrese el código del libro: ");
+        String codigoLibro = sc.nextLine();
+
+        Libro libroEncontrado = null;
+
+        for (Libro libro : libros) {
+            if (libro.getCodigo().equals(codigoLibro)) {
+                libroEncontrado = libro;
+                break;
+            }
+        }
+
+        if (libroEncontrado == null) {
+            System.out.println("Libro no encontrado");
+            return;
+        }
+
+        System.out.print("Ingrese la fecha: ");
+        LocalDate fecha = LocalDate.parse(sc.nextLine());
+
+        System.out.print("Ingrese el estado: ");
+        String estado = sc.nextLine();
+
+        Prestamo prestamo = new Prestamo(idPrestamo, clienteEncontrado, libroEncontrado, fecha, estado);
+
+        prestamos.add(prestamo);
+
+        System.out.println("Préstamo registrado correctamente.");
+    }
+    public static void devolverLibro(){
+        System.out.print("DEVOLUCION DEL LIBRO");
+        System.out.print("INGRESE EL ID DEL PRESTAMO ");
+        String idPrestamo=sc.nextLine();
+        for(Prestamo prestamo : prestamos){
+            if(prestamo.getIdPrestamo().equals(idPrestamo)){
+                prestamo.setEstado("DEVUELTO");
+                prestamo.getLibro().setDisponible(true);
+                System.out.print("Libro devuelto correctamente");
+                return;
+            }
+        }
+        System.out.print("Prestamo no encontrado");
+    }
+    public static void listarPrestamos(){
+        System.out.print("LISTA DE PRESTAMOS");
+        if(prestamos.isEmpty()){
+         System.out.print("NO HAY PRESTAMOS REGISTRADOS");
+         return;
+        }
+        for(Prestamo prestamo : prestamos){
+         System.out.print("ID PRESTAMO: "+ prestamo.getIdPrestamo());
+         System.out.print("CLIENTE: "+prestamo.getCliente().getNombre());
+         System.out.print("LIBRO: "+ prestamo.getLibro().getTitulo());
+         System.out.print("FECHA: "+prestamo.getFecha());
+         System.out.print("ESTADO: "+prestamo.getEstado());
+        }
+        
     }
 }
